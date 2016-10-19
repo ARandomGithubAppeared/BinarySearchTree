@@ -53,7 +53,7 @@ public class BinarySearchTree<E extends Comparable<E>>{
 	private BinarySearchTreeNode root;
 	
 	public BinarySearchTree(E elt){
-		BinarySearchTreeNode root = new BinarySearchTreeNode(elt);
+		root = new BinarySearchTreeNode(elt);
 		size=1;
 	}
 	
@@ -68,4 +68,15 @@ public class BinarySearchTree<E extends Comparable<E>>{
 	public void display(){
 		root.display();
 	}
+	
+	public static void main(String[] args){
+		Integer x=0;
+		BinarySearchTree tree = new BinarySearchTree(x);
+		for (x=0;x<100;x++){
+			tree.add(x);
+		}
+		tree.display();
+	}
+	
+	
 }
