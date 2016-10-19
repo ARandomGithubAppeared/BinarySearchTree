@@ -1,6 +1,6 @@
 
-public class BinarySearchTree<E extends Comparable>{ 
-	private class BinarySearchTreeNode<E extends Comparable>{
+public class BinarySearchTree<E extends Comparable<E>>{ 
+	private class BinarySearchTreeNode<E extends Comparable<E>>{
 		private E elt;
 		private BinarySearchTreeNode<E> left;
 		private BinarySearchTreeNode<E> right;
