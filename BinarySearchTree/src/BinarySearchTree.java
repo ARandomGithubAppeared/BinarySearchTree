@@ -14,9 +14,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 	}
 
-	// public int compare(E elt) {
-	// return root.compare(elt);
-	// }
 
 	public void add(E elt) {
 		if (root == null) {
@@ -49,9 +46,18 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 		BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
 		Scanner scan = new Scanner(System.in);
-		for (int x=0;x<20;x++){
-			tree.add((int)Math.floor(100*Math.random()));
-		}
+		//for (int x=0;x<20;x++){
+		//	tree.add((int)Math.floor(100*Math.random()));
+		//}
+		
+		tree.add(20);
+		tree.add(10);
+		tree.add(30);
+		//tree.add(5);
+		tree.add(15);
+		tree.add(25);
+		tree.add(35);
+		
 		System.out.println(tree.root.getElt());
 		System.out.println("PreOrder:");
 		tree.order(new PreOrderVisitor());
@@ -69,8 +75,16 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.println("Ask if something is here");
 		
 		while(scan.hasNext()){
-			if(tree.contains(scan.nextInt())){
+			int nextNum=scan.nextInt();
+			if(tree.contains(nextNum)){
 				System.out.println("It's here");
+				System.out.println("delete? y/n");
+				String check=scan.next();
+				if (check.equals("y")){
+					tree.delete(nextNum);
+					System.out.println("InOrder:");
+					tree.order(new InOrderVisitor());
+				}
 			}else{
 				System.out.println("It's not here");
 			}

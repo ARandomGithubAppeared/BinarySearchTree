@@ -5,19 +5,19 @@ public class BinarySearchTreeNode<E extends Comparable<E>> {
 	private BinarySearchTreeNode<E> left;
 	private BinarySearchTreeNode<E> right;
 	private E node;
-	
-	public BinarySearchTreeNode<E> getLeft(){
+
+	public BinarySearchTreeNode<E> getLeft() {
 		return left;
 	}
 
-	public BinarySearchTreeNode<E> getRight(){
+	public BinarySearchTreeNode<E> getRight() {
 		return right;
 	}
-	
-	public void order(Visitor v){
+
+	public void order(Visitor v) {
 		v.visit(this);
 	}
-	
+
 	public void add(E elt) {
 		if (this.elt.compareTo(elt) > 0) {
 			if (left == null) {
@@ -96,51 +96,49 @@ public class BinarySearchTreeNode<E extends Comparable<E>> {
 	public void delete(BinarySearchTreeNode<E> root, E elt) {
 		BinarySearchTreeNode<E> node = findNode(root, null, elt);
 		// System.out.println(node.getElt());
-		if (node.left != null) {
-			if (node.left.getElt().compareTo(elt) == 0) {
-				BinarySearchTreeNode<E> buff = node.left;
-				node.left = findLeft(node.left);
-				node.left = buff.left;
-				node.right = buff.right;
-			}
+		BinarySearchTreeNode<E> buff = null;
+		if(node.left.getElt()==elt){
+			node=node.left;
 		}
-		if (node.right != null) {
-			if (node.right.getElt().compareTo(elt) == 0) {
-				BinarySearchTreeNode<E> buff = node.right;
-				node.right = findRight(node.right);
-				node.right = buff.right;
-				node.left = buff.left;
-			}
+		if(node.right.getElt()==elt){
+			node=node.right;
 		}
+		//if((buff.right != null && buff.left==null )||( buff.right == null && buff.left != null)){
+			//if(buff.right!=null){
+				
+			//}
+		//}
+	
 
 	}
 
 	public BinarySearchTreeNode<E> findLeft(BinarySearchTreeNode<E> node) {
-		if (node.right != null) {
-			node = node.right;
+		BinarySearchTreeNode<E> buff = node;
+		if (buff.right != null) {
+			buff = buff.right;
 		}
 
-		return node;
+		return buff;
 	}
 
 	public BinarySearchTreeNode<E> findRight(BinarySearchTreeNode<E> node) {
-		if (node.left != null) {
-			node = node.left;
+		BinarySearchTreeNode<E> buff = node;
+		if (buff.left != null) {
+			buff = buff.left;
 		}
 
-		return node;
+		return buff;
 	}
 
 	public E getElt() {
 		return this.elt;
 	}
-	
-	
+
 	public ArrayList<E> treeSort() {
 		ArrayList<E> johnnyBoy = new ArrayList<E>();
-		
+
 		this.order(new ArrayListVisitor(johnnyBoy));
-		
+
 		return johnnyBoy;
 
 	}
