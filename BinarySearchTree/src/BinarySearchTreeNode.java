@@ -96,18 +96,34 @@ public class BinarySearchTreeNode<E extends Comparable<E>> {
 	public void delete(BinarySearchTreeNode<E> root, E elt) {
 		BinarySearchTreeNode<E> node = findNode(root, null, elt);
 		// System.out.println(node.getElt());
-		BinarySearchTreeNode<E> buff = null;
+		BinarySearchTreeNode<E> buff = node;
+		boolean left=false;
 		if(node.left.getElt()==elt){
+			left=true;
 			node=node.left;
+			buff.left=null;
 		}
 		if(node.right.getElt()==elt){
 			node=node.right;
+			buff.right=null;
 		}
-		//if((buff.right != null && buff.left==null )||( buff.right == null && buff.left != null)){
-			//if(buff.right!=null){
-				
-			//}
-		//}
+		if((node.right != null && node.left==null )||( node.right == null && node.left != null)){
+			if(node.right!=null){
+				if(left==true){
+					if(node.left!=null){
+						buff.left=node.left;
+					}else{
+						buff.left=node.right;
+					}
+				}else{
+				    if(node.right!=null){
+				    	buff.right=node.right;
+				    }else{
+				    	buff.right=node.left;
+				    }
+				}
+			}
+		}
 	
 
 	}
