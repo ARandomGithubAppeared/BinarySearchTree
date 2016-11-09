@@ -1,4 +1,4 @@
 
-public interface Visitor {
-	public void visit(BinarySearchTreeNode n);
+public interface Visitor<E extends Comparable<E>> {
+	public void visit(BinarySearchTreeNode<E> n);
 }

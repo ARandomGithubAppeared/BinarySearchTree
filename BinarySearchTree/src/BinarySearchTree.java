@@ -66,6 +66,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			System.out.println(array[x]);
 		}
 		
+		System.out.println("Ask if something is here");
 		
 		while(scan.hasNext()){
 			if(tree.contains(scan.nextInt())){
