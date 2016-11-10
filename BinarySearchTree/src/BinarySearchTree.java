@@ -9,8 +9,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 	public void delete(E elt) {
 		if (root != null) {
-			root.delete(root, elt);
-		}
+
+				root.delete(root, elt);
+			
+			}
 
 	}
 
@@ -46,17 +48,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 		BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
 		Scanner scan = new Scanner(System.in);
-		//for (int x=0;x<20;x++){
-		//	tree.add((int)Math.floor(100*Math.random()));
-		//}
+		for (int x=0;x<40;x++){
+			tree.add((int)Math.floor(100*Math.random()));
+		}
+
 		
-		tree.add(20);
-		tree.add(10);
-		tree.add(30);
-		//tree.add(5);
-		tree.add(15);
-		tree.add(25);
-		tree.add(35);
 		
 		System.out.println(tree.root.getElt());
 		System.out.println("PreOrder:");

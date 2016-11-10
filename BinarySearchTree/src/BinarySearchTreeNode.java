@@ -96,53 +96,93 @@ public class BinarySearchTreeNode<E extends Comparable<E>> {
 	public void delete(BinarySearchTreeNode<E> root, E elt) {
 		BinarySearchTreeNode<E> node = findNode(root, null, elt);
 		// System.out.println(node.getElt());
-		BinarySearchTreeNode<E> buff = node;
-		boolean left=false;
-		if(node.left.getElt()==elt){
-			left=true;
-			node=node.left;
-			buff.left=null;
-		}
-		if(node.right.getElt()==elt){
-			node=node.right;
-			buff.right=null;
-		}
-		if((node.right != null && node.left==null )||( node.right == null && node.left != null)){
-			if(node.right!=null){
-				if(left==true){
-					if(node.left!=null){
-						buff.left=node.left;
-					}else{
-						buff.left=node.right;
-					}
-				}else{
-				    if(node.right!=null){
-				    	buff.right=node.right;
-				    }else{
-				    	buff.right=node.left;
-				    }
+		BinarySearchTreeNode<E> parent = node;
+		BinarySearchTreeNode<E> childBuff = null;
+		if (node != null) {
+			if (node.left != null && node.left.getElt() == elt) {
+				node = node.left;
+				System.out.println("left");
+				if (node.left != null && node.right == null) {
+					node = node.left;
+					parent.left = node;
+				}
+				if (node.left == null && node.right != null) {
+					node = node.right;
+					parent.left = node;
+				}
+				if (node.left == null && node.right == null) {
+					parent.left = null;
+				}
+				if (node.left!=null && node.right != null){
+					childBuff=node;
+					node=findRight(node.left);					
+					BinarySearchTreeNode<E> righty=null;
+					righty=findNode(parent,null,node.getElt());
+				    righty.left=null;
+					node.right=childBuff.right;
+					node.left=childBuff.left;
+					parent.left=node;
+
+					System.out.println(righty.getElt());
+					
+				//	parent.right=righty;
+				}
+			} else if (node.right != null && node.right.getElt() == elt) {
+				node = node.right;
+				System.out.println("right");
+				if (node.left != null && node.right == null) {
+					node = node.left;
+					parent.right = node;
+				}
+				if (node.left == null && node.right != null) {
+					node = node.right;
+					parent.right = node;
+				}
+				if (node.left == null && node.right == null) {
+					parent.right=null;
+				}
+				if (node.left!=null && node.right != null){
+					childBuff=node;
+					node=findLeft(node.left);					
+					BinarySearchTreeNode<E> righty=null;
+					righty=findNode(parent,null,node.getElt());
+				    righty.right=null;
+					node.right=childBuff.right;
+					node.left=childBuff.left;
+					parent.right=node;
+
+					System.out.println(righty.getElt());
+					
+				//	parent.right=righty;
 				}
 			}
+
 		}
-	
 
 	}
 
-	public BinarySearchTreeNode<E> findLeft(BinarySearchTreeNode<E> node) {
+	public BinarySearchTreeNode<E> findLeft(BinarySearchTreeNode<E> node){
 		BinarySearchTreeNode<E> buff = node;
+
+
+		
 		if (buff.right != null) {
-			buff = buff.right;
+			buff = findLeft(buff.right);
 		}
 
+	//	System.out.println(par.getElt());
 		return buff;
 	}
-
-	public BinarySearchTreeNode<E> findRight(BinarySearchTreeNode<E> node) {
+	public BinarySearchTreeNode<E> findRight(BinarySearchTreeNode<E> node){
 		BinarySearchTreeNode<E> buff = node;
+
+
+		
 		if (buff.left != null) {
-			buff = buff.left;
+			buff = findLeft(buff.left);
 		}
 
+	//	System.out.println(par.getElt());
 		return buff;
 	}
 
